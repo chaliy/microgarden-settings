@@ -1,0 +1,11 @@
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+indent_style = space
+
+
+[*.{js,es6,jsx}]
+# 4 space indentation
+indent_style = space
+indent_size = 4

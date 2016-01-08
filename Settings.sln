@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F48EC85-BEF6-4E9C-B869-51175B92A9DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{46E47F15-3784-4E2E-8402-2E84D5464596}"
+	ProjectSection(SolutionItems) = preProject
+		CONTRIBUTE.md = CONTRIBUTE.md
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings", "src\MicroGarden.Settings\MicroGarden.Settings.xproj", "{16A9B4BC-4434-4515-917D-274D02AB6CC7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.Core", "src\MicroGarden.Settings.Core\MicroGarden.Settings.Core.xproj", "{19393D48-576B-4B53-86C1-8655D9295D46}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.Stores.PostgreSQL", "src\MicroGarden.Settings.Stores.PostgreSQL\MicroGarden.Settings.Stores.PostgreSQL.xproj", "{9659DD66-493F-4BB7-BF49-73EAFA53FE01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4B692D2E-6CB0-40CC-A133-AAEFC6B1206F}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.Client", "src\MicroGarden.Settings.Client\MicroGarden.Settings.Client.xproj", "{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{F586E6BD-96AF-411C-A53B-9DBCEDC7B136}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SimpleConsumer", "examples\SimpleConsumer\SimpleConsumer.xproj", "{AA476BB8-EB5F-4FBA-9A9D-959D5022964D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16A9B4BC-4434-4515-917D-274D02AB6CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16A9B4BC-4434-4515-917D-274D02AB6CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16A9B4BC-4434-4515-917D-274D02AB6CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16A9B4BC-4434-4515-917D-274D02AB6CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19393D48-576B-4B53-86C1-8655D9295D46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19393D48-576B-4B53-86C1-8655D9295D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19393D48-576B-4B53-86C1-8655D9295D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19393D48-576B-4B53-86C1-8655D9295D46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9659DD66-493F-4BB7-BF49-73EAFA53FE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9659DD66-493F-4BB7-BF49-73EAFA53FE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9659DD66-493F-4BB7-BF49-73EAFA53FE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9659DD66-493F-4BB7-BF49-73EAFA53FE01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA476BB8-EB5F-4FBA-9A9D-959D5022964D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA476BB8-EB5F-4FBA-9A9D-959D5022964D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA476BB8-EB5F-4FBA-9A9D-959D5022964D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA476BB8-EB5F-4FBA-9A9D-959D5022964D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16A9B4BC-4434-4515-917D-274D02AB6CC7} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
+		{19393D48-576B-4B53-86C1-8655D9295D46} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
+		{9659DD66-493F-4BB7-BF49-73EAFA53FE01} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
+		{E0B32CB1-05DE-4AF5-8225-1B538DA9C8DA} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
+		{AA476BB8-EB5F-4FBA-9A9D-959D5022964D} = {F586E6BD-96AF-411C-A53B-9DBCEDC7B136}
+	EndGlobalSection
+EndGlobal
