@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SettingsSection ({ displayName, fields, values, onChange }) {
+export default ({ displayName, fields, values, onChange }) => {
   var localOnChange = (e, field) => {
     onChange({
       name: field.name,

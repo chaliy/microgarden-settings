@@ -1,8 +1,6 @@
-using MicroGarden.Settings.Api.Settings.Models;
-using MicroGarden.Settings.Core.Schemas.Services.Storage;
+using MicroGarden.Settings.Core.Data;
+using MicroGarden.Settings.Core.Data.Services.Storage;
 using Microsoft.AspNet.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MicroGarden.Settings.Api.Settings
@@ -10,13 +8,22 @@ namespace MicroGarden.Settings.Api.Settings
     [Route("api/settings/[controller]")]
     public class Data : Controller
     {
-        readonly ISchemaStorage _storage;
+        readonly ISettingsDataStorage _storage;
 
-        public Data(ISchemaStorage storage)
+        public Data(ISettingsDataStorage storage)
         {
             _storage = storage;
         }
 
+        [HttpPut("{name}")]
+        public async Task<dynamic> Update(string name, [FromBody]dynamic changes)
+        {
+            var target = await _storage.Get(name);
+
+            target = DataMerger.Merge(target, changes);
+            await _storage.Update(name, target);
+            return target;
+        }
 
     }
 }

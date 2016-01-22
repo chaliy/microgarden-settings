@@ -1,43 +1,44 @@
 import React from 'react';
-import { reload } from '../actions';
-import { getEntities } from '../store';
-import { updateSettings } from '../actions';
 //import { dispatch, subscribe } from 'rlux';
 import { dispatch, subscribe } from '../utils/rlux';
 
 import SettingsList from '../components/SettingsList';
 
+import { loadSettings, LOAD_SETTINGS } from '../actions';
+
 export default class Settings extends React.Component {
 
   constructor(){
     super();
-    var self = this;
+    this.state = {};
 
-    self.state = {
-      entities: getEntities()
-    };
-    reload.forEach(e => {
-      self.setState({
-        entities: e.entities
-      });
+    this.subscription = subscribe(a => {
+
+      switch(a.type) {
+        case `${LOAD_SETTINGS}_SUCCESS`:
+          this.setState({
+            items: a.result
+          });
+          break;
+      }
+
     });
+  }
 
-    var a = subscribe(e => {
-      console.log('e', e);
-    });
-    console.log(a);
+  componentWillMount() {
+    dispatch(loadSettings());
+  }
 
-    dispatch(updateSettings('test', {}));
-
-    a.dispose();
+  componentWillUnmount() {
+    this.subscription.end();
   }
 
   render() {
-    var { entities } = this.state;
+    var { items } = this.state;
     return (
       <div>
         <h2>Settings</h2>
-        <SettingsList entities={entities} />
+        <SettingsList items={items} />
       </div>
     );
   }

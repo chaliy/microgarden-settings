@@ -1,18 +1,28 @@
-import Rx from 'rx';
+export const LOAD_SETTINGS = 'LOAD_SETTINGS';
+export const LOAD_SETTINGS_ITEM = 'LOAD_SETTINGS_ITEM';
+export const UPDATE_SETTINGS_ITEM = 'UPDATE_SETTINGS_ITEM';
 
-export const init = new Rx.Subject();
-export const reload = new Rx.Subject();
-
-export const UPDATE_SETTINGS = 'UPDATE_SETTINGS';
-
-export const updateSettings = (sectionName, changes) => ({
-  type: UPDATE_SETTINGS,
+export const loadSettings = () => ({
+  type: LOAD_SETTINGS,
   API_CALL: {
-    path: '/some/some',
+    path: '/api/settings/instances',
+    method: 'get'
+  }
+});
+
+export const loadSettingsItem = (name) => ({
+  type: LOAD_SETTINGS_ITEM,
+  API_CALL: {
+    path: `/api/settings/instances/${name}`,
+    method: 'get'
+  }
+});
+
+export const updateSettingsItem = (name, changes) => ({
+  type: UPDATE_SETTINGS_ITEM,
+  API_CALL: {
+    path: `/api/settings/data/${name}`,
     method: 'put',
-    data: {
-      sectionName,
-      changes
-    }
+    data: changes
   }
 });

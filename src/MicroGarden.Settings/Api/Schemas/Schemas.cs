@@ -9,9 +9,9 @@ namespace MicroGarden.Settings.Api.Schemas
     [Route("api/[controller]")]
     public class Schemas : Controller
     {
-        readonly ISchemaStorage _storage;
+        readonly ISettingsSchemaStorage _storage;
 
-        public Schemas(ISchemaStorage storage)
+        public Schemas(ISettingsSchemaStorage storage)
         {
             _storage = storage;
         }

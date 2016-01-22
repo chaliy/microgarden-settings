@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-﻿using MicroGarden.Settings.Core.Schemas.Models;
+using MicroGarden.Settings.Core.Schemas.Models;
 
 namespace MicroGarden.Settings.Api.Settings.Models
 {
@@ -8,7 +7,7 @@ namespace MicroGarden.Settings.Api.Settings.Models
         public string Name { get; set; }
         public string DisplayName { get; set; }
 
-        public IDictionary<string, object> Data {get; set; }
+        public dynamic Data {get; set; }
 
         public SettingsSchema Schema { get; set; }
     }

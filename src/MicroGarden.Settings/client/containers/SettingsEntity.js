@@ -1,42 +1,59 @@
 import React from 'react';
 import SettingsForm from '../components/SettingsForm';
 
-import { retrieve } from '../utils/server';
+import { dispatch, subscribe } from '../utils/rlux';
 
-const glue = (key, setState) => {
-  setState({});
-  (async () => {
-    var response = await retrieve(`api/settings/instances/${key}`);
-    var data = await response.json();
-
-    setState({
-      entity: data
-    });
-  })();
-}
+import { updateSettingsItem, UPDATE_SETTINGS_ITEM } from '../actions';
+import { loadSettingsItem, LOAD_SETTINGS_ITEM } from '../actions';
 
 export default class SettingsEntity extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
     this.state = {};
+    this.name = props.params.name;
+
+    this.subscription = subscribe(a => {
+
+      switch(a.type) {
+        case `${UPDATE_SETTINGS_ITEM}_SUCCESS`:
+          this.setState({
+            data: a.result
+          });
+          break;
+
+        case `${LOAD_SETTINGS_ITEM}_SUCCESS`:
+          this.setState(a.result);
+          break;
+      }
+
+    });
   }
 
   componentWillMount() {
-    var { key } = this.props.params;
-    glue(key, s => this.setState(s));
+    dispatch(loadSettingsItem(this.name));
+  }
+
+  componentWillUnmount() {
+    this.subscription.end();
+  }
+
+  handleSubmit(changes) {
+    dispatch(updateSettingsItem(this.name, changes));
   }
 
   render() {
-    var { entity } = this.state;
+    var { schema, data } = this.state;
 
-    if (!entity) {
+    if (!schema) {
       return (<div>Loading...</div>);
     }
 
-    var data = entity.data || {};
-
-    return (<SettingsForm schema={entity.schema} data={data} />);
+    return (<SettingsForm
+              schema={schema}
+              data={data || {}}
+              onSubmit={this.handleSubmit.bind(this)} />);
   }
 }
 

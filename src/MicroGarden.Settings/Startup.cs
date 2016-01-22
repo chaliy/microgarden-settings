@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using MicroGarden.Settings.Core.Schemas.Models;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MicroGarden.Settings
@@ -25,8 +27,82 @@ namespace MicroGarden.Settings
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMicroGardenSettingsPostgreSQLStore();
-
+            services.AddMicroGardenSettings(builder =>
+            {
+                builder
+                    .AddInMemory(new[]
+                    {
+                        new SettingsEntity
+                        {
+                            Name = "first",
+                            DisplayName = "First Settings",
+                            Schema = new SettingsSchema
+                            {
+                                Sections = new []
+                                {
+                                    new SettingsSection
+                                    {
+                                        Name = "test",
+                                        DisplayName = "Test",
+                                        Description = "Test Descriptio",
+                                        Fields = new []
+                                        {
+                                            new SettingsField
+                                            {
+                                                Name = "field1",
+                                                Type = "Text",
+                                                DysplayName = "Field #1"
+                                            },
+                                            new SettingsField
+                                            {
+                                                Name = "field2",
+                                                Type = "Text",
+                                                DysplayName = "Field #2"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        new SettingsEntity
+                        {
+                            Name = "test",
+                            DisplayName = "Test Settings",
+                            Schema = new SettingsSchema
+                            {
+                                Sections = new []
+                                {
+                                    new SettingsSection
+                                    {
+                                        Name = "test",
+                                        DisplayName = "Test",
+                                        Description = "Test Descriptio",
+                                        Fields = new []
+                                        {
+                                            new SettingsField
+                                            {
+                                                Name = "field1",
+                                                Type = "Text",
+                                                DysplayName = "Field #1"
+                                            },
+                                            new SettingsField
+                                            {
+                                                Name = "field2",
+                                                Type = "Text",
+                                                DysplayName = "Field #2"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    .AddNpgsql(npsql =>
+                    {
+                        npsql.AddDataStorage();
+                    });              
+            });
+            
             services.AddMvc();
             services.AddMvc(options =>
             {
@@ -42,8 +118,8 @@ namespace MicroGarden.Settings
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
-            app.UseMicroGardenSettingsPostgreSQLStore(Configuration["ConnectionString"]);
-            app.InitMicroGardenSettingsPostgreSQLStore();
+            app.UseMicroGardenSettingsNpgsql(Configuration["ConnectionString"]);
+            app.SetupMicroGardenSettingsNpgsqlDataStorage();
 
             app.UseIISPlatformHandler();
             app.UseDefaultFiles();

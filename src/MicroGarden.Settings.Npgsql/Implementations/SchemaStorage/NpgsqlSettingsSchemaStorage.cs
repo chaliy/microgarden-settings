@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
 using Dapper;
-using MicroGarden.Settings.Core;
 using MicroGarden.Settings.Core.Schemas.Models;
 using MicroGarden.Settings.Core.Schemas.Services.Storage;
-using MicroGarden.Settings.Stores.PostgreSQL.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using MicroGarden.Settings.Core.Schemas.Exceptions;
+using MicroGarden.Settings.Npgsql.Services;
 
-namespace MicroGarden.Settings.Stores.PostgreSQL.Implementations.SchemaStorage
+namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
 {
-    public class NpgsqlSchemaStorage : ISchemaStorage
+    public class NpgsqlSettingsSchemaStorage : ISettingsSchemaStorage
     {
         static readonly Func<dynamic, SettingsEntity> ReadSettingsEntity = record => new SettingsEntity
         {
@@ -22,7 +22,7 @@ namespace MicroGarden.Settings.Stores.PostgreSQL.Implementations.SchemaStorage
 
         readonly NpgsqlConnectionService _connectionService;
 
-        public NpgsqlSchemaStorage(NpgsqlConnectionService connectionService)
+        public NpgsqlSettingsSchemaStorage(NpgsqlConnectionService connectionService)
         {
             _connectionService = connectionService;
         }
@@ -68,7 +68,7 @@ namespace MicroGarden.Settings.Stores.PostgreSQL.Implementations.SchemaStorage
                     .FirstOrDefault();
                 if (record == null)
                 {
-                    throw new EntityNotFoundException($"Settings entry '{name}' was not found");
+                    throw new SchemaNotFoundException(name);
                 }
                 return record;
             }
@@ -95,6 +95,20 @@ namespace MicroGarden.Settings.Stores.PostgreSQL.Implementations.SchemaStorage
                     Schema = JsonConvert.SerializeObject(entity.Schema),
                     Context = ""
                 });
+            }
+        }
+
+        public void Up()
+        {
+            using (var connection = _connectionService.OpenConnection())
+            {
+                connection.Execute(@"CREATE TABLE IF NOT EXISTS settingsschemas
+                (                    
+                    name varchar(450) PRIMARY KEY,
+                    displayname varchar(450) NOT NULL,
+                    schema json NOT NULL,
+                    context varchar(450) NOT NULL
+                )");
             }
         }
     }

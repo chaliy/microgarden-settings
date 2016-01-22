@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 
 namespace MicroGarden.Settings.Core.Schemas.Services.Storage
 {
-    public interface ISchemaStorage
+    public interface ISettingsSchemaStorage
     {
         Task<IList<SettingsEntity>> List();
 
+        /// <exception cref="SchemaNotFoundException">Thrown when exception was not found</exception>
         Task<SettingsEntity> Get(string name);
 
         Task Create(SettingsEntity entity);

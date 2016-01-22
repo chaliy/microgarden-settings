@@ -30,6 +30,7 @@
         "vars-on-top": 0,
         "padded-blocks": 0,
         "curly": [2, "all"],
-        "no-console": 0
+        "no-console": 0,
+        "react/sort-comp": 0
     }
 }

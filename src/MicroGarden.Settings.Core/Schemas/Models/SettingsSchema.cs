@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace MicroGarden.Settings.Core.Schemas.Models
+﻿namespace MicroGarden.Settings.Core.Schemas.Models
 {
     public class SettingsSchema
     {
-        public List<SettingsSection> Sections { get; set; }
+        public SettingsSection[] Sections { get; set; }
     }
 }

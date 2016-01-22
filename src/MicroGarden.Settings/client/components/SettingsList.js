@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function SettingsList ({entities}) {
+export default ({ items }) => {
   return (
     <div>
       {
-        (entities || []).map(entity => {
+        (items || []).map(item => {
           return (
-            <div key={entity.name}>
-              <Link to={`/settings/${entity.name}`}><h3>{entity.displayName}</h3></Link>
-              <p>{entity.displayName}</p>
+            <div key={item.name}>
+              <Link to={`/settings/${item.name}`}><h3>{item.displayName}</h3></Link>
+              <p>{item.displayName}</p>
             </div>
           );
         })

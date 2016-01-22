@@ -3,7 +3,7 @@ using System;
 using System.Data.Common;
 using System.Threading.Tasks;
 
-namespace MicroGarden.Settings.Stores.PostgreSQL.Services
+namespace MicroGarden.Settings.Npgsql.Services
 {
     public class NpgsqlConnectionService
     {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MicroGarden.Settings.Core.Schemas.Models
+﻿namespace MicroGarden.Settings.Core.Schemas.Models
 {
     public class SettingsSection
     {
@@ -8,6 +6,6 @@ namespace MicroGarden.Settings.Core.Schemas.Models
         public string DisplayName { get; set; }
         public string Description { get; set; }
 
-        public List<SettingsField> Fields { get; set; }
+        public SettingsField[] Fields { get; set; }
     }
 }

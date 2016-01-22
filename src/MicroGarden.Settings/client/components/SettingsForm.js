@@ -1,44 +1,43 @@
 import React from 'react';
 import SettingsSection from './SettingsSection';
 
-export default class SettingsForm extends React.Component {
+export default ({ schema, data, onSubmit }) => {
 
-  constructor(){
-    super();
+  var changes = {};
+
+  var handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(changes);
   }
 
-  render() {
-    var { schema, data } = this.props;
-
-    var sections = schema.sections || [];
-
-    return (
-      <div>
-        <h2>Settings</h2>
-        <form onSubmit={e => {
-          console.log(this.state);
-        }}>
-          {
-            (sections).map(section => {
-              var values = data[section.name] || {};
-              var onChange = e => {
-                this.setState({
-                  [section.name + '.' + e.name]: e.value
-                });
-              };
-              return (
-                <SettingsSection key={section.name} {...section} values={values} onChange={onChange} />
-              );
-            })
-          }
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-      </div>
-    );
+  var updateChanges = (sectionName, fieldName, value) => {
+    changes = Object.assign(changes, {
+      [sectionName]: Object.assign(changes[sectionName] || {}, {
+        [fieldName]: value
+      })
+    });
   }
-}
 
-SettingsForm.propTypes = {
-  schema: React.PropTypes.object.isRequired,
-  data: React.PropTypes.object.isRequired
+  return (
+    <div>
+      <h2>Settings</h2>
+      <form onSubmit={handleSubmit}>
+        {
+          (schema.sections || []).map(section => {
+            var onSectionChange = e => {
+              updateChanges(section.name, e.name, e.value);
+            };
+            return (
+              <SettingsSection
+                  key={section.name}
+                  values={data[section.name] || {}}
+                  onChange={onSectionChange}
+                  {...section} />
+            );
+          })
+        }
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  );
 }
