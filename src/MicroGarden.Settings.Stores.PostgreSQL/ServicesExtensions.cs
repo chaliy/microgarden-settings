@@ -1,6 +1,6 @@
 ﻿using MicroGarden.Settings.Stores.PostgreSQL.Implementations.SchemaStorage;
 using MicroGarden.Settings.Stores.PostgreSQL.Services;
-using MicroGarden.Settings.Core.Manage.Schemas.Services.Storage;
+using MicroGarden.Settings.Core.Schemas.Services.Storage;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

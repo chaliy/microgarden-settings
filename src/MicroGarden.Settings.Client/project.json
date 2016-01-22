@@ -1,7 +1,7 @@
 ﻿{
   "version": "1.0.0-*",  
-  "description": "Client Class Library",
-  "authors": [ "Mike" ],
+  "description": "MicroGarden Settings Client",
+  "authors": [ "Mike Chaliy" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",

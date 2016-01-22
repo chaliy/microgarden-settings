@@ -30,6 +30,10 @@
     "dnx451": { },
     "dnxcore50": { }
   },
+  
+  "scripts": {
+      "prepublish": ["npm install", "npm run build"]
+  },
 
   "exclude": [
     "wwwroot",

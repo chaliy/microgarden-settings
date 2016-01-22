@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 
 namespace MicroGarden.Settings.Stores.PostgreSQL.Services
 {
@@ -17,9 +16,9 @@ namespace MicroGarden.Settings.Stores.PostgreSQL.Services
             using (var connection = _connectionService.OpenConnection())
             {   
                 connection.Execute(@"CREATE TABLE IF NOT EXISTS SettingsSchemas
-                (
-                    Key varchar(450) PRIMARY KEY,
-                    Name varchar(450) NOT NULL,
+                (                    
+                    Name varchar(450) PRIMARY KEY,
+                    DisplayName varchar(450) NOT NULL,
                     Schema json NOT NULL,
                     Context varchar(450) NOT NULL
                 )");                               

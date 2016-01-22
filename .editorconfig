@@ -6,6 +6,11 @@ indent_style = space
 
 
 [*.{js,es6,jsx}]
+# 2 space indentation
+indent_style = space
+indent_size = 2
+
+[*.{cs}]
 # 4 space indentation
 indent_style = space
 indent_size = 4

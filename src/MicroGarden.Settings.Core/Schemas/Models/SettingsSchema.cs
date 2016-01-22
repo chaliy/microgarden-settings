@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MicroGarden.Settings.Core.Manage.Schemas.Models
+namespace MicroGarden.Settings.Core.Schemas.Models
 {
     public class SettingsSchema
     {
