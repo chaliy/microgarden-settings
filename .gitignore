@@ -213,3 +213,7 @@ ModelManifest.xml
 # JavaScript
 
 node_modules/
+
+# Misc
+
+*.json.gzip
