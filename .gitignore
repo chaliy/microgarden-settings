@@ -217,3 +217,9 @@ node_modules/
 # Misc
 
 *.json.gzip
+
+# Deploy
+
+deploy/approot/
+deploy/wwwroot/
+deploy/logs/
