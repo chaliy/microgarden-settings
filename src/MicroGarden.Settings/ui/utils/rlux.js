@@ -16,12 +16,10 @@ export function use(m) {
 
 export function subscribe(next) {
   _subscribers.push(next);
-  return {
-    end: () => {
-      var index = _subscribers.indexOf(next);
-      if (index >= 0) {
-        _subscribers.slice(index, 1);
-      }
+  return () => {
+    var index = _subscribers.indexOf(next);
+    if (index >= 0) {
+      _subscribers.slice(index, 1);
     }
   }
 }

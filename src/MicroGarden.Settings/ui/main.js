@@ -12,15 +12,8 @@ import { use, loggingMiddleware } from './utils/rlux';
 use(loggingMiddleware);
 use(apiCallMiddleware);
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+var App = ({ children }) => <div> { children } </div>
+
 render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>

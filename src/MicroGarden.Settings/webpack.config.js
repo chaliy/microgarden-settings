@@ -1,3 +1,3 @@
-var config = require('microgarden-ui-sdk/webpack.config');
+var config = require('microgarden-ui-sdk/webpack.config.factory')();
 
-module.exports = Object.assign({}, config);
+module.exports = config;

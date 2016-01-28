@@ -1,5 +1,4 @@
-﻿using MicroGarden.Settings.Core.Schemas.Models;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Linq;
+using MicroGarden.Settings.Core.Schemas.Models;
 
 namespace MicroGarden.Settings
 {
@@ -43,19 +43,20 @@ namespace MicroGarden.Settings
                                     {
                                         Name = "test",
                                         DisplayName = "Test",
-                                        Description = "Test Descriptio",
+                                        Description = "Test Description",
                                         Fields = new []
                                         {
                                             new SettingsField
                                             {
                                                 Name = "field1",
-                                                Type = "Text",
-                                                DysplayName = "Field #1"
+                                                Type = "text",
+                                                DysplayName = "Field #1",
+                                                Required = true
                                             },
                                             new SettingsField
                                             {
                                                 Name = "field2",
-                                                Type = "Text",
+                                                Type = "text",
                                                 DysplayName = "Field #2"
                                             }
                                         }
@@ -81,13 +82,13 @@ namespace MicroGarden.Settings
                                             new SettingsField
                                             {
                                                 Name = "field1",
-                                                Type = "Text",
+                                                Type = "text",
                                                 DysplayName = "Field #1"
                                             },
                                             new SettingsField
                                             {
                                                 Name = "field2",
-                                                Type = "Text",
+                                                Type = "text",
                                                 DysplayName = "Field #2"
                                             }
                                         }
@@ -99,10 +100,9 @@ namespace MicroGarden.Settings
                     .AddNpgsql(npsql =>
                     {
                         npsql.AddDataStorage();
-                    });              
+                    });
             });
-            
-            services.AddMvc();
+
             services.AddMvc(options =>
             {
                 var formatter = (JsonOutputFormatter)options.OutputFormatters.First(f => f is JsonOutputFormatter);

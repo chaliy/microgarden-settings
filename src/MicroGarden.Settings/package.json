@@ -2,6 +2,11 @@
   "name": "microgarden-settings",
   "description": "MicroGarden Settings UI",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "git://github.com/chaliy/microgarden-settings.git"
+  },
   "dependencies": {
     "history": "^1.17.0",
     "react": "^0.14.3",
@@ -11,7 +16,7 @@
     "rx": "^4.0.7"
   },
   "devDependencies": {
-    "microgarden-ui-sdk": "git://github.com/chaliy/microgarden-ui-sdk.git"
+    "microgarden-ui-sdk": "../../../microgarden-ui-sdk/"
   },
   "scripts": {
     "build": "webpack --config ./webpack.config.js",

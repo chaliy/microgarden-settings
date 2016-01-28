@@ -9,6 +9,16 @@ namespace MicroGarden.Settings.Core.Schemas.Models
         public string Description { get; set; }
         public string Type { get; set; }
 
-        public IDictionary<string, string> Data { get; set; }
+        public string Title { get; set; }
+        public string Placeholder { get; set; }
+
+        public string Pattern { get; set; }
+        public string Min { get; set; }
+        public string Max { get; set; }
+        public bool Required { get; set; }
+        public string Step { get; set; }
+        public string MaxLength { get; set; }
+
+        public IDictionary<string, string> Properties { get; set; }
     }
 }

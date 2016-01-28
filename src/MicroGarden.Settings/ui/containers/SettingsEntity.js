@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsForm from '../components/SettingsForm';
+import SettingsForm from '../components/settings/SettingsForm';
 
 import { dispatch, subscribe } from '../utils/rlux';
 
@@ -14,7 +14,7 @@ export default class SettingsEntity extends React.Component {
     this.state = {};
     this.name = props.params.name;
 
-    this.subscription = subscribe(a => {
+    this.unsubscribe = subscribe(a => {
 
       switch(a.type) {
         case `${UPDATE_SETTINGS_ITEM}_SUCCESS`:
@@ -36,7 +36,7 @@ export default class SettingsEntity extends React.Component {
   }
 
   componentWillUnmount() {
-    this.subscription.end();
+    this.unsubscribe();
   }
 
   handleSubmit(changes) {

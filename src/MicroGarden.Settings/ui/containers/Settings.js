@@ -12,7 +12,7 @@ export default class Settings extends React.Component {
     super();
     this.state = {};
 
-    this.subscription = subscribe(a => {
+    this.unsubscribe = subscribe(a => {
 
       switch(a.type) {
         case `${LOAD_SETTINGS}_SUCCESS`:
@@ -30,7 +30,7 @@ export default class Settings extends React.Component {
   }
 
   componentWillUnmount() {
-    this.subscription.end();
+    this.unsubscribe();
   }
 
   render() {
