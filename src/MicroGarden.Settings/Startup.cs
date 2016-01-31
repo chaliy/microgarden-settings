@@ -29,87 +29,96 @@ namespace MicroGarden.Settings
             services.AddMicroGardenSettings(builder =>
             {
                 builder
-                    .AddInMemory(new[]
-                    {
-                        new SettingsEntity
-                        {
-                            Name = "first",
-                            DisplayName = "First Settings",
-                            Schema = new SettingsSchema
-                            {
-                                Sections = new []
-                                {
-                                    new SettingsSection
-                                    {
-                                        Name = "test",
-                                        DisplayName = "Test",
-                                        Description = "Test Description",
-                                        Fields = new []
-                                        {
-                                            new SettingsField
-                                            {
-                                                Name = "field1",
-                                                Type = "text",
-                                                DysplayName = "Field #1",
-                                                Required = true
-                                            },
-                                            new SettingsField
-                                            {
-                                                Name = "field2",
-                                                Type = "text",
-                                                DysplayName = "Field #2"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        new SettingsEntity
-                        {
-                            Name = "test",
-                            DisplayName = "Test Settings",
-                            Schema = new SettingsSchema
-                            {
-                                Sections = new []
-                                {
-                                    new SettingsSection
-                                    {
-                                        Name = "test",
-                                        DisplayName = "Test",
-                                        Description = "Test Descriptio",
-                                        Fields = new []
-                                        {
-                                            new SettingsField
-                                            {
-                                                Name = "field1",
-                                                Type = "text",
-                                                DysplayName = "Field #1"
-                                            },
-                                            new SettingsField
-                                            {
-                                                Name = "field2",
-                                                Type = "text",
-                                                DysplayName = "Field #2"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    })
+                    //.AddInMemory(new[]
+                    //{
+                    //    new SettingsEntity
+                    //    {
+                    //        Id = "first",
+                    //        DisplayName = "First Settings",
+                    //        Schema = new SettingsSchema
+                    //        {
+                    //            Sections = new []
+                    //            {
+                    //                new SettingsSection
+                    //                {
+                    //                    Name = "test",
+                    //                    DisplayName = "Test",
+                    //                    Description = "Test Description",
+                    //                    Fields = new []
+                    //                    {
+                    //                        new SettingsField
+                    //                        {
+                    //                            Name = "field1",
+                    //                            Type = "text",
+                    //                            DysplayName = "Field #1",
+                    //                            Required = true
+                    //                        },
+                    //                        new SettingsField
+                    //                        {
+                    //                            Name = "field2",
+                    //                            Type = "text",
+                    //                            DysplayName = "Field #2"
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    },
+                    //    new SettingsEntity
+                    //    {
+                    //        Id = "test",
+                    //        DisplayName = "Test Settings",
+                    //        Schema = new SettingsSchema
+                    //        {
+                    //            Sections = new []
+                    //            {
+                    //                new SettingsSection
+                    //                {
+                    //                    Name = "test",
+                    //                    DisplayName = "Test",
+                    //                    Description = "Test Descriptio",
+                    //                    Fields = new []
+                    //                    {
+                    //                        new SettingsField
+                    //                        {
+                    //                            Name = "field1",
+                    //                            Type = "text",
+                    //                            DysplayName = "Field #1"
+                    //                        },
+                    //                        new SettingsField
+                    //                        {
+                    //                            Name = "field2",
+                    //                            Type = "text",
+                    //                            DysplayName = "Field #2"
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //})
                     .AddNpgsql(npsql =>
                     {
                         npsql.AddDataStorage();
+                        npsql.AddSchemaStorage();
                     });
             });
 
             services.AddMvc(options =>
             {
-                var formatter = (JsonOutputFormatter)options.OutputFormatters.First(f => f is JsonOutputFormatter);
+                var outputSerializerSettings = options.OutputFormatters
+                    .OfType<JsonOutputFormatter>()
+                    .First()
+                    .SerializerSettings;
 
-                formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                formatter.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
-                formatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                outputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+                var inputSerializerSettings = options.InputFormatters
+                    .OfType<JsonInputFormatter>()
+                    .First()
+                    .SerializerSettings;
+
+                inputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }
 
@@ -119,6 +128,7 @@ namespace MicroGarden.Settings
 
             app.UseMicroGardenSettingsNpgsql(Configuration["ConnectionString"]);
             app.SetupMicroGardenSettingsNpgsqlDataStorage();
+            app.SetupMicroGardenSettingsNpgsqlSchemaStorage();
 
             app.UseIISPlatformHandler();
             app.UseDefaultFiles();

@@ -19,12 +19,12 @@ namespace MicroGarden.Settings.InMemory.Implementations.SchemaProvider
             _entities = new List<SettingsEntity>(entities);
         }
 
-        public Task<SettingsEntity> Get(string name)
+        public Task<SettingsEntity> Get(string id)
         {
-            var result = _entities.FirstOrDefault(x => x.Name == name);
+            var result = _entities.FirstOrDefault(x => x.Id == id);
             if (result == null)
             {
-                throw new SchemaNotFoundException(name);
+                throw new SchemaNotFoundException(id);
             }
 
             return Task.FromResult(result);

@@ -38,22 +38,42 @@ export const wireList = ({ loadItems }) => {
 
 };
 
-export const wireUpdate = ({ load, update, updateSuccess }) => {
+export const wireUpdate = ({ load, update, success }) => {
 
   return wire({
     mount: async instance => {
       var id = instance.props.params.id;
-      var state = Object.assign(await load(id), {
+      instance.setState({
+        data: await load(id),
         onSubmit: async data => {
           var response = await update(id, data);
-          if (updateSuccess) {
-            updateSuccess({
+          if (success) {
+            success({
               response,
               instance
             });
           }
         }
       });
+    }
+  });
+};
+
+export const wireCreate = ({ create, success }) => {
+
+  return wire({
+    mount: async instance => {
+      var state = {
+        onSubmit: async data => {
+          var response = await create(data);
+          if (success) {
+            success({
+              response,
+              instance
+            });
+          }
+        }
+      };
       instance.setState(state);
     }
   });

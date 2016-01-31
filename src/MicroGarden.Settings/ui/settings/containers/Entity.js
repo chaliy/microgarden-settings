@@ -7,7 +7,7 @@ import SettingsForm from '../components/settings/SettingsForm';
 
 var Entity = props => (
     <div>
-      <h2>Settings</h2>
+      <h2>Settings: {props.displayName}</h2>
       <SettingsForm {...props} />
     </div>
 );
@@ -15,7 +15,7 @@ var Entity = props => (
 export default wireUpdate({
   load: instancesApi.load,
   update: dataApi.update,
-  updateSuccess: ({response, instance}) => {
+  success: ({response, instance}) => {
     instance.setState({
       data: response
     });

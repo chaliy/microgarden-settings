@@ -7,8 +7,8 @@ namespace MicroGarden.Settings.Core.Schemas.Services.Provider
     public interface ISettingsSchemaProvider
     {
         Task<IReadOnlyList<SettingsEntity>> List();
-        
-        /// <exception cref="SchemaNotFoundException">Thrown when exception was not found</exception>        
-        Task<SettingsEntity> Get(string name);
+
+        /// <exception cref="SchemaNotFoundException">Thrown when exception was not found</exception>
+        Task<SettingsEntity> Get(string id);
     }
 }

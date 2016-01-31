@@ -15,7 +15,7 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
     {
         static readonly Func<dynamic, SettingsEntity> ReadSettingsEntity = record => new SettingsEntity
         {
-            Name = record.name,
+            Id = record.id,
             DisplayName = record.displayname,
             Schema = JsonConvert.DeserializeObject<SettingsSchema>(record.schema ?? "{}")
         };
@@ -31,8 +31,8 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
         {
             using(var connection = await _connectionService.OpenConnectionAsync())
             {
-                await connection.ExecuteAsync("INSERT INTO settingsschemas(name, displayname, schema, context) VALUES (@Name, @DisplayName, @Schema::json, @Context)", new {
-                    entity.Name,
+                await connection.ExecuteAsync("INSERT INTO settingsschemas(id, displayname, schema, context) VALUES (@Id, @DisplayName, @Schema::json, @Context)", new {
+                    entity.Id,
                     entity.DisplayName,
                     Schema = JsonConvert.SerializeObject(entity.Schema),
                     Context = ""
@@ -40,11 +40,11 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
             }
         }
 
-        public async Task<IList<SettingsEntity>> List()
+        public async Task<IReadOnlyList<SettingsEntity>> List()
         {
             using(var connection = await _connectionService.OpenConnectionAsync())
             {
-                var records = await connection.QueryAsync<dynamic>("SELECT name, displayname, schema FROM settingsschemas");
+                var records = await connection.QueryAsync<dynamic>("SELECT id, displayname, schema FROM settingsschemas");
 
                 return records
                     .Select(ReadSettingsEntity)
@@ -52,15 +52,15 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
             }
         }
 
-        public async Task<SettingsEntity> Get(string name)
+        public async Task<SettingsEntity> Get(string id)
         {
             using(var connection = await _connectionService.OpenConnectionAsync())
             {
                 var records = await connection.QueryAsync<dynamic>(
-                  "SELECT name, displayname, schema FROM settingsschemas WHERE name = @Name",
+                  "SELECT id, displayname, schema FROM settingsschemas WHERE id = @Id",
                   new
                   {
-                      Name = name
+                      Id = id
                   });
 
                 var record = records
@@ -68,30 +68,30 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
                     .FirstOrDefault();
                 if (record == null)
                 {
-                    throw new SchemaNotFoundException(name);
+                    throw new SchemaNotFoundException(id);
                 }
                 return record;
             }
         }
 
-        public async Task Remove(string name)
+        public async Task Remove(string id)
         {
             using(var connection = await _connectionService.OpenConnectionAsync())
             {
-                await connection.ExecuteAsync("DELETE FROM settingsschemas WHERE name = @Name", new {
-                    Name = name
+                await connection.ExecuteAsync("DELETE FROM settingsschemas WHERE id = @Id", new {
+                    Id = id
                 });
             }
         }
 
-        public async Task Update(string name, SettingsEntity entity)
+        public async Task Update(string id, SettingsEntity entity)
         {
             using(var connection = await _connectionService.OpenConnectionAsync())
             {
-                await connection.ExecuteAsync("UPDATE settingsschemas SET name=@Name, displayname=@DysplayName, schema=@Schema::json, context=@Context) WHERE name = @OriginalName", new {
-                    OriginalName = name,
+                await connection.ExecuteAsync("UPDATE settingsschemas SET id=@Id, displayname=@DisplayName, schema=@Schema::json, context=@Context WHERE id = @OriginalId", new {
+                    OriginalId = id,
                     entity.DisplayName,
-                    entity.Name,
+                    entity.Id,
                     Schema = JsonConvert.SerializeObject(entity.Schema),
                     Context = ""
                 });
@@ -103,8 +103,8 @@ namespace MicroGarden.Settings.Stores.Npgsql.Implementations.SchemaStorage
             using (var connection = _connectionService.OpenConnection())
             {
                 connection.Execute(@"CREATE TABLE IF NOT EXISTS settingsschemas
-                (                    
-                    name varchar(450) PRIMARY KEY,
+                (
+                    id varchar(450) NOT NULL,
                     displayname varchar(450) NOT NULL,
                     schema json NOT NULL,
                     context varchar(450) NOT NULL

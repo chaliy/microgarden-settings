@@ -6,7 +6,7 @@ using System;
 
 namespace Microsoft.Extensions.Configuration
 {
-    public static class NpgsqlMicroGardenSettingsApplicationBuilderExtensions
+    public static class NpgsqlMgsApplicationBuilderExtensions
     {
         public static void UseMicroGardenSettingsNpgsql(this IApplicationBuilder app, string connectionString)
         {
@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.Configuration
             if (string.IsNullOrWhiteSpace(connectionString)) throw new ArgumentNullException(nameof(connectionString));
 
             var connectionService = (NpgsqlConnectionService)app.ApplicationServices.GetService(typeof(NpgsqlConnectionService));
-            
+
             if (connectionService == null)
             {
                 throw new InvalidOperationException("PostgreSQL (Npgsql) MicroGarden Settings services are not configured yet. Consider using AddMicroGardenSettings.AddNpgsql() in ConfigureServices");
@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.Configuration
 
             connectionService.SetConnectionString(connectionString);
         }
-        
+
         public static void SetupMicroGardenSettingsNpgsqlDataStorage(this IApplicationBuilder app)
         {
             app.ExecuteSetup<NpgsqlSettingsDataStorage>(s => s.Up());

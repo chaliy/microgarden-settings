@@ -3,10 +3,10 @@ using System;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class NpgsqlMicroGardenSettingsServicesBuilderExtensions
+    public static class NpgsqlMgsServicesBuilderExtensions
     {
         public static MicroGardenSettingsServicesBuilder AddNpgsql(this MicroGardenSettingsServicesBuilder builder,
-            Action<NpgsqlMicroGardenSettingsServicesBuilder> configure)
+            Action<NpgsqlMgsServicesBuilder> configure)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
             if (configure == null) throw new ArgumentNullException(nameof(configure));
@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var accessor = (MicroGardenSettingsServicesBuilder.IAccessor)builder;
             accessor.Services.AddInstance(new NpgsqlConnectionService());
 
-            configure(new NpgsqlMicroGardenSettingsServicesBuilder(accessor.Services));
+            configure(new NpgsqlMgsServicesBuilder(accessor.Services));
 
             return builder;
         }

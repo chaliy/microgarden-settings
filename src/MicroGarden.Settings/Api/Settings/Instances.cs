@@ -15,7 +15,8 @@ namespace MicroGarden.Settings.Api.Settings
         readonly ISettingsSchemaProvider _provider;
         readonly ISettingsDataStorage _storage;
 
-        public Instances(ISettingsSchemaProvider provider, ISettingsDataStorage storage)
+        public Instances(ISettingsSchemaProvider provider,
+            ISettingsDataStorage storage)
         {
             if (provider == null) throw new ArgumentNullException(nameof(provider));
             if (storage == null) throw new ArgumentNullException(nameof(storage));
@@ -29,20 +30,20 @@ namespace MicroGarden.Settings.Api.Settings
         {
             return (await _provider.List()).Select(x => new SettingsInstanceInfo
             {
-                Name = x.Name,
+                Id = x.Id,
                 DisplayName = x.DisplayName
             });
         }
 
-        [HttpGet("{name}")]
-        public async Task<SettingsInstance> Get(string name)
+        [HttpGet("{id}")]
+        public async Task<SettingsInstance> Get(string id)
         {
-            var entity = await _provider.Get(name);
-            var data = await _storage.Get(name);
+            var entity = await _provider.Get(id);
+            var data = await _storage.Get(id);
 
             return new SettingsInstance
             {
-                Name = entity.Name,
+                Id = entity.Id,
                 DisplayName = entity.DisplayName,
                 Data = data,
                 Schema = entity.Schema

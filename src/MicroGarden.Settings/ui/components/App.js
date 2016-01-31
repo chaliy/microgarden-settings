@@ -8,6 +8,7 @@ var sidebar = (
     <h2>Settings</h2>
     <Link to="/settings">Settings</Link>
     <hr />
+    <Link to="/schemas">Schemas</Link>
   </div>
 );
 
