@@ -1,24 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom'
-import { browserHistory, Router, Route, IndexRoute } from 'react-router'
+import { render } from 'react-dom';
+import { hashHistory, Router, Route } from 'react-router';
 
-import Settings from './containers/Settings';
-import SettingsEntity from './containers/SettingsEntity';
-
-import { apiCallMiddleware } from './utils/server';
-import { use, loggingMiddleware } from './utils/rlux';
-//import { use, loggingMiddleware } from 'rlux';
-
-use(loggingMiddleware);
-use(apiCallMiddleware);
-
-var App = ({ children }) => <div> { children } </div>
+import App from './components/App';
+import SettingsRoutes from './settings/routes';
 
 render((
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Settings} />
-      <Route path="settings/:name" component={SettingsEntity} />
+      {SettingsRoutes}
     </Route>
   </Router>
-), document.getElementById('app'))
+), document.getElementById('app'));

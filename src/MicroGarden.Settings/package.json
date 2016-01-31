@@ -11,9 +11,8 @@
     "history": "^1.17.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-router": "^1.0.2",
-    "rlux": "^0.0.2",
-    "rx": "^4.0.7"
+    "react-router": "^2.0.0-rc5",
+    "react-sidebar": "^2.1.1"
   },
   "devDependencies": {
     "microgarden-ui-sdk": "../../../microgarden-ui-sdk/"

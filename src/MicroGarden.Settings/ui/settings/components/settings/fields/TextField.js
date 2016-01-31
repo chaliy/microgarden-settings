@@ -6,7 +6,7 @@ export default ({ field, defaultValue, onChange }) => {
       name: field.name,
       value: e.target.value
     });
-  }  
+  }
   return (
           <div key={field.name} className="form-group">
             <label htmlFor={field.name}>{field.displayName}</label>

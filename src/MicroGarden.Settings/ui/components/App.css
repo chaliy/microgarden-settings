@@ -1,0 +1,27 @@
+.left-sidebar {
+  width: 256px;
+  text-indent: 20px;
+  background-color: #2b3643;
+  padding-top: 20px;
+}
+
+.left-sidebar h2 {
+  color: #fff;
+}
+
+.left-sidebar a {
+  display: block;
+  padding: '16px 0px';
+  color: #fff;
+  text-decoration: 'none';
+}
+
+.left-sidebar hr {
+  margin: '8px 0';
+  height: 1;
+  backgroundColor: #fff;
+}
+
+#main {
+  padding: 15px;
+}
