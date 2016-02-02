@@ -1,20 +1,21 @@
-import {Component, PropTypes} from 'react';
+import { Component, PropTypes } from 'react';
 
 export default class TextField extends Component {
 
   render() {
-    var props = this.props;
+    var { name, displayName, help } = this.props;
+
     return (
-        <div key={props.name} className="form-group">
-          <label htmlFor={props.name}>{props.displayName}</label>
+        <div className="form-group">
+          <label htmlFor={name}>{displayName}</label>
           <input
             className="form-control"
-            id={props.name}
-            value={this.context.data[props.name]}
+            id={name}
+            value={this.context.data[name]}
             onChange={this.context.onChange}
-            {...props}
-            />          
-          <p className="help-block">{props.help}</p>
+            {...this.props}
+            />
+          <p className="help-block">{help}</p>
         </div>
     );
   }

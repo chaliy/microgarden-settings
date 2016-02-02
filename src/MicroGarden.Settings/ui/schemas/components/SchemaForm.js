@@ -1,19 +1,12 @@
 import Form from '../../components/Form';
 import TextField from '../../components/fields/TextField';
 import JsonTextField from '../../components/fields/JsonTextField';
+import SchemaEditorField from './SchemaEditorField';
 
 export default props => {
 
-  var onSubmit = data => {
-    if (props.onSubmit) {
-      var schema = JSON.parse(data.schema);
-      data.schema = schema;
-      props.onSubmit(data);
-    }
-  };
-
   return (
-    <Form {...props} onSubmit={onSubmit}>
+    <Form {...props} >
       <TextField name="id"
           displayName="ID"
           required
@@ -24,7 +17,7 @@ export default props => {
       <TextField name="displayName"
           displayName="Display Name" />
 
-      <JsonTextField name="schema"
+      <SchemaEditorField name="schema"
               displayName="Settings Schema" />
     </Form>
   );

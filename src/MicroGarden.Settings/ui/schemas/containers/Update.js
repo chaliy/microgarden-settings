@@ -14,6 +14,9 @@ var Create = props => (
 export default wireUpdate({
   load: api.load,
   update: api.update,
+  // update: (id, data) => {
+  //   console.log(data);
+  // },
   success: () => {
     redirectTo('/schemas');
   }

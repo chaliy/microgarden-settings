@@ -7,6 +7,6 @@ import Update from './containers/Update';
 export default (
   <Route path="schemas">
     <IndexRoute component={Home} />
-    <Route path="create" component={Create} />
+    <Route path="@create" component={Create} />
     <Route path=":id" component={Update} />
   </Route>);

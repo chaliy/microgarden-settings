@@ -8,14 +8,20 @@ export default class Form extends Component {
 
   getChildContext = () => {
     return {
-      onChange: e => this.handleChanges({
-        [e.target.name]: e.target.value
-      }),
+      onChange: e => {
+        var name = e.target ? e.target.name : e.name;
+        var value = e.target ? e.target.value : e.value;
+
+        this.handleChanges({
+          [name]: value
+        });
+      },
       data: this.getData()
     };
   };
 
   handleChanges = changes => {
+    console.log(changes);
     this.setState(changes);
   };
 

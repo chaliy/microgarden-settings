@@ -2,11 +2,11 @@ import {Component, PropTypes} from 'react';
 
 export default class JsonTextField extends Component {
 
-  render() {
-    var props = this.props;
+  render() {    
+    var { name, displayName, help } = this.props;
 
     var _readValue = () => {
-      var val = this.context.data[props.name];
+      var val = this.context.data[name];
       if (val && typeof(val) === 'object') {
         return JSON.stringify(val);
       }
@@ -14,16 +14,16 @@ export default class JsonTextField extends Component {
     }
 
     return (
-        <div key={props.name} className="form-group">
-          <label htmlFor={props.name}>{props.displayName}</label>
+        <div className="form-group">
+          <label htmlFor={name}>{displayName}</label>
           <textarea
             className="form-control"
-            id={props.name}
+            id={name}
             value={_readValue()}
             onChange={this.context.onChange}
-            {...props}
+            {...this.props}
             ></textarea>
-          <p className="help-block">{props.help}</p>
+          <p className="help-block">{help}</p>
         </div>
     );
   }

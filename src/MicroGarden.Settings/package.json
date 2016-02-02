@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "git://github.com/chaliy/microgarden-settings.git"
+    "type": "git",
+    "url": "git://github.com/chaliy/microgarden-settings.git"
   },
   "dependencies": {
     "history": "^1.17.0",
-    "react": "^0.14.3",
+    "react": "^0.14.3",    
     "react-dom": "^0.14.3",
     "react-router": "^2.0.0-rc5",
     "react-sidebar": "^2.1.1"

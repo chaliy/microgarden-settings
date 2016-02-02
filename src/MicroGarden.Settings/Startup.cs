@@ -41,7 +41,7 @@ namespace MicroGarden.Settings
                     //            {
                     //                new SettingsSection
                     //                {
-                    //                    Name = "test",
+                    //                    Id = "test",
                     //                    DisplayName = "Test",
                     //                    Description = "Test Description",
                     //                    Fields = new []
@@ -50,14 +50,14 @@ namespace MicroGarden.Settings
                     //                        {
                     //                            Name = "field1",
                     //                            Type = "text",
-                    //                            DysplayName = "Field #1",
+                    //                            DisplayName = "Field #1",
                     //                            Required = true
                     //                        },
                     //                        new SettingsField
                     //                        {
                     //                            Name = "field2",
                     //                            Type = "text",
-                    //                            DysplayName = "Field #2"
+                    //                            DisplayName = "Field #2"
                     //                        }
                     //                    }
                     //                }
@@ -74,7 +74,7 @@ namespace MicroGarden.Settings
                     //            {
                     //                new SettingsSection
                     //                {
-                    //                    Name = "test",
+                    //                    Id = "test",
                     //                    DisplayName = "Test",
                     //                    Description = "Test Descriptio",
                     //                    Fields = new []
@@ -83,13 +83,13 @@ namespace MicroGarden.Settings
                     //                        {
                     //                            Name = "field1",
                     //                            Type = "text",
-                    //                            DysplayName = "Field #1"
+                    //                            DisplayName = "Field #1"
                     //                        },
                     //                        new SettingsField
                     //                        {
                     //                            Name = "field2",
                     //                            Type = "text",
-                    //                            DysplayName = "Field #2"
+                    //                            DisplayName = "Field #2"
                     //                        }
                     //                    }
                     //                }
