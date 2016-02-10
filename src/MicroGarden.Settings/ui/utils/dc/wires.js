@@ -1,8 +1,8 @@
 import { Component, createElement } from 'react';
 
-export const wire = ({ mount, unmount }) => component => {
+export const wire = ({ mount, unmount }) => DecoratedComponent => {
 
-  class Wrapper extends Component {
+  return class Wrapper extends Component {
 
     componentWillMount = () => {
       if (mount) {
@@ -17,11 +17,9 @@ export const wire = ({ mount, unmount }) => component => {
     };
 
     render = () => {
-      return createElement(component, this.state);
+      return <DecoratedComponent {...this.state} />;
     };
   }
-
-  return Wrapper;
 };
 
 

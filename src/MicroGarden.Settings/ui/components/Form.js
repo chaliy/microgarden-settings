@@ -21,11 +21,10 @@ export default class Form extends Component {
   };
 
   handleChanges = changes => {
-    console.log(changes);
     this.setState(changes);
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     var { onSubmit } = this.props;
     if (onSubmit) {

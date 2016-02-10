@@ -4,7 +4,7 @@ import { redirectTo } from '../../utils/routing';
 import api from '../api';
 import SchemaForm from '../components/SchemaForm';
 
-var Create = props => (
+var Update = props => (
     <div>
       <h2>Schema: {props.displayName}</h2>
       <SchemaForm {...props} />
@@ -14,10 +14,7 @@ var Create = props => (
 export default wireUpdate({
   load: api.load,
   update: api.update,
-  // update: (id, data) => {
-  //   console.log(data);
-  // },
   success: () => {
     redirectTo('/schemas');
   }
-})(Create);
+})(Update);
