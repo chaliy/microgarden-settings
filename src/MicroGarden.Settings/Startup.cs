@@ -29,74 +29,6 @@ namespace MicroGarden.Settings
             services.AddMicroGardenSettings(builder =>
             {
                 builder
-                    //.AddInMemory(new[]
-                    //{
-                    //    new SettingsEntity
-                    //    {
-                    //        Id = "first",
-                    //        DisplayName = "First Settings",
-                    //        Schema = new SettingsSchema
-                    //        {
-                    //            Sections = new []
-                    //            {
-                    //                new SettingsSection
-                    //                {
-                    //                    Id = "test",
-                    //                    DisplayName = "Test",
-                    //                    Description = "Test Description",
-                    //                    Fields = new []
-                    //                    {
-                    //                        new SettingsField
-                    //                        {
-                    //                            Name = "field1",
-                    //                            Type = "text",
-                    //                            DisplayName = "Field #1",
-                    //                            Required = true
-                    //                        },
-                    //                        new SettingsField
-                    //                        {
-                    //                            Name = "field2",
-                    //                            Type = "text",
-                    //                            DisplayName = "Field #2"
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    },
-                    //    new SettingsEntity
-                    //    {
-                    //        Id = "test",
-                    //        DisplayName = "Test Settings",
-                    //        Schema = new SettingsSchema
-                    //        {
-                    //            Sections = new []
-                    //            {
-                    //                new SettingsSection
-                    //                {
-                    //                    Id = "test",
-                    //                    DisplayName = "Test",
-                    //                    Description = "Test Descriptio",
-                    //                    Fields = new []
-                    //                    {
-                    //                        new SettingsField
-                    //                        {
-                    //                            Name = "field1",
-                    //                            Type = "text",
-                    //                            DisplayName = "Field #1"
-                    //                        },
-                    //                        new SettingsField
-                    //                        {
-                    //                            Name = "field2",
-                    //                            Type = "text",
-                    //                            DisplayName = "Field #2"
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //})
                     .AddNpgsql(npsql =>
                     {
                         npsql.AddDataStorage();
@@ -104,6 +36,7 @@ namespace MicroGarden.Settings
                     });
             });
 
+            // TODO: Somehow serialization options for given controllers should go to controllers...
             services.AddMvc(options =>
             {
                 var outputSerializerSettings = options.OutputFormatters

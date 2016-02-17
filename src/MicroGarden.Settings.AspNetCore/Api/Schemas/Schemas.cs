@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MicroGarden.Settings.Api.Schemas
+namespace MicroGarden.Settings.AspNetCore.Api.Schemas
 {
     [Route("api/[controller]")]
     public class Schemas : Controller

@@ -1,6 +1,6 @@
 using Microsoft.AspNet.Mvc;
 
-namespace MicroGarden.Settings.Api
+namespace MicroGarden.Settings.AspNetCore.Api
 {
     [Route("api/[controller]")]
     public class Info : Controller

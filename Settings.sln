@@ -31,6 +31,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.Npgsql
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.Core.Tests", "test\MicroGarden.Settings.Core.Tests\MicroGarden.Settings.Core.Tests.xproj", "{E5073E66-F531-4467-B7E1-B7C314D99F89}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MicroGarden.Settings.AspNetCore", "src\MicroGarden.Settings.AspNetCore\MicroGarden.Settings.AspNetCore.xproj", "{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{E5073E66-F531-4467-B7E1-B7C314D99F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5073E66-F531-4467-B7E1-B7C314D99F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5073E66-F531-4467-B7E1-B7C314D99F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +83,6 @@ Global
 		{38C02C8B-9677-4D3A-8F41-8E8CB0276D58} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
 		{86359529-C398-4008-8745-1F8E9A0820D0} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
 		{E5073E66-F531-4467-B7E1-B7C314D99F89} = {4B692D2E-6CB0-40CC-A133-AAEFC6B1206F}
+		{412BC6E1-DBBA-4A5D-BBE8-CC93DD84B782} = {6F48EC85-BEF6-4E9C-B869-51175B92A9DD}
 	EndGlobalSection
 EndGlobal

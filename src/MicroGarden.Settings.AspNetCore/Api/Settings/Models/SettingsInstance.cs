@@ -1,6 +1,6 @@
 using MicroGarden.Settings.Core.Schemas.Models;
 
-namespace MicroGarden.Settings.Api.Settings.Models
+namespace MicroGarden.Settings.AspNetCore.Api.Settings.Models
 {
     public class SettingsInstance
     {

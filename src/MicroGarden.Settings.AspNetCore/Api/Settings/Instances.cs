@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
-using MicroGarden.Settings.Api.Settings.Models;
+using MicroGarden.Settings.AspNetCore.Api.Settings.Models;
 using MicroGarden.Settings.Core.Schemas.Services.Provider;
 using MicroGarden.Settings.Core.Data.Services.Storage;
 
-namespace MicroGarden.Settings.Api.Settings
+namespace MicroGarden.Settings.AspNetCore.Api.Settings
 {
     [Route("api/settings/[controller]")]
     public class Instances : Controller

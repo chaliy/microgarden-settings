@@ -18,6 +18,7 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-*",
 
     "MicroGarden.Settings.Core": "",
+    "MicroGarden.Settings.AspNetCore": "",
     "MicroGarden.Settings.Npgsql": "",
     "MicroGarden.Settings.InMemory": ""
   },

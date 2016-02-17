@@ -5,7 +5,7 @@ using MicroGarden.Settings.Core.Data.Services.Storage;
 using MicroGarden.Settings.Core.Schemas.Services.Provider;
 using Microsoft.AspNet.Mvc;
 
-namespace MicroGarden.Settings.Api.Settings
+namespace MicroGarden.Settings.AspNetCore.Api.Settings
 {
     [Route("api/settings/[controller]")]
     public class Data : Controller
