@@ -8,8 +8,7 @@ using MicroGarden.Settings.Core.Schemas.Services.Provider;
 using MicroGarden.Settings.Core.Data.Services.Storage;
 
 namespace MicroGarden.Settings.AspNetCore.Api.Settings
-{
-    [Route("api/settings/[controller]")]
+{    
     public class Instances : Controller
     {
         readonly ISettingsSchemaProvider _provider;
@@ -25,7 +24,6 @@ namespace MicroGarden.Settings.AspNetCore.Api.Settings
             _storage = storage;
         }
 
-        [HttpGet]
         public async Task<IEnumerable<SettingsInstanceInfo>> Get()
         {
             return (await _provider.List()).Select(x => new SettingsInstanceInfo
@@ -34,9 +32,8 @@ namespace MicroGarden.Settings.AspNetCore.Api.Settings
                 DisplayName = x.DisplayName
             });
         }
-
-        [HttpGet("{id}")]
-        public async Task<SettingsInstance> Get(string id)
+        
+        public async Task<SettingsInstance> Item(string id)
         {
             var entity = await _provider.Get(id);
             var data = await _storage.Get(id);

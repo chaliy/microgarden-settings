@@ -1,0 +1,31 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "MicroGarden.Settings.AspNetCore.IntegrationTests Class Library",
+  "authors": [ "Mike Chaliy" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+
+    "dnxcore50": { },
+    "dnx451": { }
+  },
+
+  "dependencies": {
+
+    "System.Net.Http": "4.0.1-beta-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-*",
+    "Microsoft.AspNet.TestHost": "1.0.0-rc1-*",
+
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+
+    "MicroGarden.Settings.AspNetCore": ""
+  },
+
+  "commands": {
+    "test": "xunit.runner.dnx"
+  }
+
+}

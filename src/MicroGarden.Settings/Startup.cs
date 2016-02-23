@@ -4,10 +4,8 @@ using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Linq;
-using MicroGarden.Settings.Core.Schemas.Models;
 
 namespace MicroGarden.Settings
 {
@@ -39,19 +37,19 @@ namespace MicroGarden.Settings
             // TODO: Somehow serialization options for given controllers should go to controllers...
             services.AddMvc(options =>
             {
-                var outputSerializerSettings = options.OutputFormatters
-                    .OfType<JsonOutputFormatter>()
-                    .First()
-                    .SerializerSettings;
+                //var outputSerializerSettings = options.OutputFormatters
+                //    .OfType<JsonOutputFormatter>()
+                //    .First()
+                //    .SerializerSettings;
 
-                outputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //outputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-                var inputSerializerSettings = options.InputFormatters
-                    .OfType<JsonInputFormatter>()
-                    .First()
-                    .SerializerSettings;
+                //var inputSerializerSettings = options.InputFormatters
+                //    .OfType<JsonInputFormatter>()
+                //    .First()
+                //    .SerializerSettings;
 
-                inputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                //inputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }
 
@@ -66,7 +64,11 @@ namespace MicroGarden.Settings
             app.UseIISPlatformHandler();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapMicroGardenSettings();
+            });
+
         }
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);

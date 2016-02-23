@@ -1,13 +1,11 @@
 using MicroGarden.Settings.Core.Schemas.Models;
 using MicroGarden.Settings.Core.Schemas.Services.Storage;
 using Microsoft.AspNet.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MicroGarden.Settings.AspNetCore.Api.Schemas
 {
-    [Route("api/[controller]")]
     public class Schemas : Controller
     {
         readonly ISettingsSchemaStorage _storage;
@@ -16,30 +14,28 @@ namespace MicroGarden.Settings.AspNetCore.Api.Schemas
         {
             _storage = storage;
         }
-
-        [HttpGet]
+        
         public async Task<IEnumerable<SettingsEntity>> Get()
         {
             return (await _storage.List());
         }
 
-        [HttpGet("{id}")]
-        public async Task<SettingsEntity> Get(string id)
+        public async Task<SettingsEntity> Item([FromRoute]string id)
         {
+            System.Console.WriteLine(id);
             return await _storage.Get(id);
         }
 
-        [HttpPost]
-        public async Task<SettingsEntity> Create([FromBody]SettingsEntity entity)
+        public async Task<SettingsEntity> Post([FromBody]SettingsEntity entity)
         {
             await _storage.Create(entity);
 
             return entity;
         }
 
-        [HttpPut("{id}")]
-        public async Task<SettingsEntity> Create(string id, [FromBody]SettingsEntity entity)
+        public async Task<SettingsEntity> Put(string id, [FromBody]SettingsEntity entity)
         {
+            System.Console.WriteLine(id);
             await _storage.Update(id, entity);
 
             return entity;

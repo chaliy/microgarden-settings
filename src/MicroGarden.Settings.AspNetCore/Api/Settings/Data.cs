@@ -7,7 +7,6 @@ using Microsoft.AspNet.Mvc;
 
 namespace MicroGarden.Settings.AspNetCore.Api.Settings
 {
-    [Route("api/settings/[controller]")]
     public class Data : Controller
     {
         readonly ISettingsSchemaProvider _provider;
@@ -21,9 +20,8 @@ namespace MicroGarden.Settings.AspNetCore.Api.Settings
             _provider = provider;
             _storage = storage;
         }
-
-        [HttpPut("{id}")]
-        public async Task<dynamic> Update(string id, [FromBody]dynamic changes)
+        
+        public async Task<dynamic> Put(string id, [FromBody]dynamic changes)
         {
             var target = await _storage.Get(id);
 
