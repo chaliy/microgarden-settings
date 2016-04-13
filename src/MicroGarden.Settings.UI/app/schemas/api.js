@@ -1,5 +1,5 @@
 import { listApi } from '../utils/dc/apis';
 
 export default listApi({
-  baseUrl: '/api/schemas'
+  baseUrl: '/settings/api/schemas'
 });

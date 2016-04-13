@@ -1,9 +1,9 @@
 import { listApi } from '../utils/dc/apis';
 
 export const instancesApi = listApi({
-  baseUrl: '/api/settings/instances'
+  baseUrl: '/settings/api/instances'
 });
 
 export const dataApi = listApi({
-  baseUrl: '/api/settings/data'
+  baseUrl: '/settings/api/data'
 });

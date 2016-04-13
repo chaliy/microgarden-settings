@@ -37,19 +37,19 @@ namespace MicroGarden.Settings
             // TODO: Somehow serialization options for given controllers should go to controllers...
             services.AddMvc(options =>
             {
-                //var outputSerializerSettings = options.OutputFormatters
-                //    .OfType<JsonOutputFormatter>()
-                //    .First()
-                //    .SerializerSettings;
+                var outputSerializerSettings = options.OutputFormatters
+                   .OfType<JsonOutputFormatter>()
+                   .First()
+                   .SerializerSettings;
 
-                //outputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                outputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-                //var inputSerializerSettings = options.InputFormatters
-                //    .OfType<JsonInputFormatter>()
-                //    .First()
-                //    .SerializerSettings;
+                var inputSerializerSettings = options.InputFormatters
+                   .OfType<JsonInputFormatter>()
+                   .First()
+                   .SerializerSettings;
 
-                //inputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                inputSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
         }
 
@@ -67,7 +67,7 @@ namespace MicroGarden.Settings
             app.UseMvc(routes =>
             {
                 routes.MapMicroGardenSettings();
-            });
+            });            
 
         }
 

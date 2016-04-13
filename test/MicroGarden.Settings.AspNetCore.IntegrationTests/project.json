@@ -21,6 +21,7 @@
     "xunit": "2.1.0",
     "xunit.runner.dnx": "2.1.0-rc1-build204",
 
+    "MicroGarden.Settings.InMemory": "",
     "MicroGarden.Settings.AspNetCore": ""
   },
 
